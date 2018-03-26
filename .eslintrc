@@ -1,0 +1,20 @@
+{ 
+    "extends": [
+        "eslint-config-airbnb-base"
+    ],
+    "rules": {
+        "arrow-body-style": ["error", "always"],
+        "arrow-parens": "off",
+        "class-methods-use-this": "warn",
+        "comma-dangle": ["error", "only-multiline"],
+        "global-require": "warn",
+        "import/no-dynamic-require": "warn",
+        "max-len": "off",
+        "no-case-declarations": "warn",
+        "no-confusing-arrow": "warn",
+        "no-nested-ternary": "warn",
+        "no-plusplus": "off",
+        "prefer-template": "warn", 
+        "semi": ["error", "never"]
+    }
+}
