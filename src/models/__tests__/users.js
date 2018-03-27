@@ -1,9 +1,6 @@
-const USERS_DATASET = require('../../../data/users.json')
+const users = require('../users')
 
 const USERS_DATASET_FIELDS_LENGTH = 19
-
-const Users = require('../Users')
-
 const SINGLE_USER_TEST_DATA = `
 {
   "_id": 1,
@@ -34,13 +31,10 @@ const SINGLE_USER_TEST_DATA = `
 `
 
 it('should load the dataset', () => {
-  const users = new Users({ dataset: USERS_DATASET })
-
   expect(users.fields).toHaveLength(USERS_DATASET_FIELDS_LENGTH)
 })
 
 it('should be able to call find and return a user', () => {
-  const users = new Users({ dataset: USERS_DATASET })
   const result = users.getById(1)
 
   expect(result).toEqual(JSON.parse(SINGLE_USER_TEST_DATA))

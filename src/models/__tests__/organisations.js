@@ -1,9 +1,6 @@
-const ORGANISATIONS_DATASET = require('../../../data/organizations.json')
+const organisations = require('../organisations')
 
 const ORGANISATIONS_DATASET_FIELDS_LENGTH = 9
-
-const Organisations = require('../Organisations')
-
 const SINGLE_ORGANISATION_TEST_DATA = `
 {
   "_id": 101,
@@ -29,14 +26,11 @@ const SINGLE_ORGANISATION_TEST_DATA = `
 `
 
 it('should load the dataset', () => {
-  const users = new Organisations({ dataset: ORGANISATIONS_DATASET })
-
-  expect(users.fields).toHaveLength(ORGANISATIONS_DATASET_FIELDS_LENGTH)
+  expect(organisations.fields).toHaveLength(ORGANISATIONS_DATASET_FIELDS_LENGTH)
 })
 
 it('should be able to call find and return an organisation', () => {
-  const users = new Organisations({ dataset: ORGANISATIONS_DATASET })
-  const result = users.getById(101)
+  const result = organisations.getById(101)
 
   expect(result).toEqual(JSON.parse(SINGLE_ORGANISATION_TEST_DATA))
 })
