@@ -8,7 +8,7 @@ Submitted by Jez Templeton
 
 Hi! This is my submission for the Zendesk Coding Challenge.
 
-Language being used is ES2016 (Javascript), and it's all made possible using (nodejs)[https://nodejs.org]. CLI framework provided by (Vorpal)[https://vorpal.js.org/]
+Language being used is ES2016 (Javascript), and it's all made possible using [nodejs](https://nodejs.org). CLI framework provided by [Vorpal](https://vorpal.js.org/)
 
 ## Requirements
 
@@ -28,7 +28,13 @@ or alternatively you can bootstrap it via npm:
 `npm start`
 
 This will bring you to a cli prompt:
+
 `zendesk:`
 
-Type `help` to get a list of possible commands.
+## Commands
 
+>At any time you can type `help` to get a list of possible commands.
+
+### search
+
+### list
