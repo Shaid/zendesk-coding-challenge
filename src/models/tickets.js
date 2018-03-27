@@ -1,4 +1,5 @@
 const Model = require('./Model.js')
+const dataset = require('../../data/tickets.json')
 
 const relations = {
   submitter_id: 'User',
@@ -7,6 +8,6 @@ const relations = {
 }
 
 module.exports = new Model({
-  dataset: require('../../data/tickets.json'),
+  dataset,
   relations
 })

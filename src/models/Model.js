@@ -22,7 +22,6 @@ class Model {
   processDataset(dataset) {
     this.data = dataset
     this.fields = this.getFieldNames()
-    return true
   }
 
   render(dataset) {

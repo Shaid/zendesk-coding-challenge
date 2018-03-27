@@ -34,7 +34,6 @@ const PERSON_MODEL_DATASET = `
 ]
 `
 const PERSON_MODEL_DATASET_FIELDS = ['_id', 'name', 'age', 'description', 'tags', 'disabled']
-
 const QUOTE_MODEL_DATASET = `
 [
   {
@@ -49,7 +48,6 @@ const QUOTE_MODEL_DATASET = `
   }
 ]
 `
-
 const QUOTE_MODEL_DATASET_FIELDS = ['_id', 'person_id', 'title']
 
 const Model = require('../Model')

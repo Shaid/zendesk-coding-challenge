@@ -28,5 +28,4 @@ describe('match different datatypes', () => {
     expect(matcher(['one', 'two'], 'one')).toBe(true)
     expect(matcher(['one', 'two'], 'three')).not.toBe(true)
   })
-
 })
