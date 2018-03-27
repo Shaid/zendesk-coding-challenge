@@ -31,10 +31,10 @@ const SINGLE_ORGANISATION_TEST_DATA = `
 it('should load the dataset', () => {
   const users = new Organisations({ dataset: ORGANISATIONS_DATASET })
 
-  expect(users.fields.length).toBe(ORGANISATIONS_DATASET_FIELDS_LENGTH)
+  expect(users.fields).toHaveLength(ORGANISATIONS_DATASET_FIELDS_LENGTH)
 })
 
-it('should be able to call find and return a user', () => {
+it('should be able to call find and return an organisation', () => {
   const users = new Organisations({ dataset: ORGANISATIONS_DATASET })
   const result = users.getById(101)
 

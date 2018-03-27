@@ -32,12 +32,12 @@ const SINGLE_TICKET_TEST_DATA = `
 it('should load the dataset', () => {
   const tickets = new Tickets({ dataset: TICKETS_DATASET })
 
-  expect(tickets.fields.length).toBe(TICKETS_DATASET_FIELDS_LENGTH)
+  expect(tickets.fields).toHaveLength(TICKETS_DATASET_FIELDS_LENGTH)
 })
 
-it('should be able to call find and return a user', () => {
+it('should be able to call find and return a ticket', () => {
   const tickets = new Tickets({ dataset: TICKETS_DATASET })
-  const result = tickets.getById("436bf9b0-1147-4c0a-8439-6f79833bff5b")
+  const result = tickets.getById('436bf9b0-1147-4c0a-8439-6f79833bff5b')
 
   expect(result).toEqual(JSON.parse(SINGLE_TICKET_TEST_DATA))
 })

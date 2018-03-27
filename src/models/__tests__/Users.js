@@ -36,7 +36,7 @@ const SINGLE_USER_TEST_DATA = `
 it('should load the dataset', () => {
   const users = new Users({ dataset: USERS_DATASET })
 
-  expect(users.fields.length).toBe(USERS_DATASET_FIELDS_LENGTH)
+  expect(users.fields).toHaveLength(USERS_DATASET_FIELDS_LENGTH)
 })
 
 it('should be able to call find and return a user', () => {

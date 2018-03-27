@@ -50,7 +50,7 @@ const QUOTE_MODEL_DATASET = `
 ]
 `
 
-const QUOTE_MODEL_DATASET_FIELDS = ['_id', 'person_id', 'title' ]
+const QUOTE_MODEL_DATASET_FIELDS = ['_id', 'person_id', 'title']
 
 const Model = require('../Model')
 
@@ -59,12 +59,12 @@ describe('model initialisation and data loading', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
 
     expect(model.data).toBeDefined()
-    expect(model.fields.length).toBeGreaterThan(0)
+    expect(model.fields).not.toHaveLength(0)
   })
 
   it('throws an exception when no dataset is provided', () => {
     expect(() => {
-      const model = new Model()
+      const model = new Model() //eslint-disable-line
     }).toThrow()
   })
 })
@@ -78,7 +78,6 @@ describe('basic model related functionality', () => {
     const quote = new Model({ dataset: JSON.parse(QUOTE_MODEL_DATASET) })
 
     expect(quote.fields).toEqual(QUOTE_MODEL_DATASET_FIELDS)
-
   })
 
   it('can pick an item by id', () => {
@@ -91,7 +90,6 @@ describe('basic model related functionality', () => {
   it('can magically determine relational keys', () => {
     expect(true).toBe(false)
   })
-
 })
 
 describe('searching for items', () => {
@@ -99,46 +97,46 @@ describe('searching for items', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
     const result = model.find('name', 'kate')
 
-    expect(result.length).toBe(1)
+    expect(result).toHaveLength(1)
   })
 
   it('can find fields with empty values', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
     const result = model.find('description', '')
 
-    expect(result.length).toBe(2)
-   })
+    expect(result).toHaveLength(2)
+  })
 
 
   it('can search for booleans using booleans', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
     const result = model.find('disabled', true)
 
-    expect(result.length).toBe(1)
-   })
+    expect(result).toHaveLength(1)
+  })
 
   it('can search for booleans using strings', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
     const result = model.find('disabled', 'true')
 
-    expect(result.length).toBe(1)
-   })
+    expect(result).toHaveLength(1)
+  })
 
   it('can search inside nested arrays', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
 
     let result = model.find('tags', 'tall')
-    expect(result.length).toBe(1)
+    expect(result).toHaveLength(1)
 
     result = model.find('tags', 'bald')
-    expect(result.length).toBe(2)
-   })
+    expect(result).toHaveLength(2)
+  })
 
   it('can happily find no matches', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
-    model.find('name', 'keith')
+    const result = model.find('name', 'keith')
 
-    expect(result.length).toBe(0)
+    expect(result).toHaveLength(0)
   })
 
   it('rejects searches against fields that do not exist', () => {

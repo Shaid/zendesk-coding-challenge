@@ -1,21 +1,35 @@
 {
-    "extends": [
-        "eslint-config-airbnb-base"
-    ],
-    "rules": {
-        "arrow-body-style": ["error", "always"],
-        "arrow-parens": "off",
-        "class-methods-use-this": "warn",
-        "comma-dangle": ["error", "only-multiline"],
-        "global-require": "warn",
-        "import/no-dynamic-require": "warn",
-        "max-len": "off",
-        "no-case-declarations": "warn",
-        "no-confusing-arrow": "warn",
-        "no-nested-ternary": "warn",
-        "no-plusplus": "off",
-        "no-restricted-syntax": "off",
-        "prefer-template": "warn",
-        "semi": ["error", "never"]
-    }
+  "env": {
+    "browser": false,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint-config-airbnb-base"
+  ],
+  "plugins": [
+    "jest"
+  ],
+  "rules": {
+    "arrow-body-style": ["error", "always"],
+    "arrow-parens": "off",
+    "class-methods-use-this": "warn",
+    "comma-dangle": ["error", "only-multiline"],
+    "global-require": "warn",
+    "import/no-dynamic-require": "warn",
+    "max-len": "off",
+    "no-case-declarations": "warn",
+    "no-confusing-arrow": "warn",
+    "no-nested-ternary": "warn",
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "prefer-template": "warn",
+    "semi": ["error", "never"],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
+  }
 }
