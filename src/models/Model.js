@@ -12,7 +12,7 @@ class Model {
   constructor(options) {
     const { dataset, relations } = options
     this.relations = relations
-    if (dataset !== undefined) {
+    if (dataset) {
       this.processDataset(dataset)
     } else {
       throw ExceptionModelDatasetNotProvided
@@ -40,22 +40,6 @@ class Model {
     }
 
     return [...fields]
-  }
-
-  getRelations() {
-    const relations = []
-
-    if (this.fields === undefined) {
-      throw ExceptionModelDatasetNotProvided
-    }
-
-    for (const field of this.fields) {
-      if (field.endsWith('_id')) {
-        relations.push(field)
-      }
-    }
-
-    return relations
   }
 
   hasField(field) {

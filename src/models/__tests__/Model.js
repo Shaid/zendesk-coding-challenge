@@ -64,7 +64,7 @@ describe('model initialisation and data loading', () => {
 
   it('throws an exception when no dataset is provided', () => {
     expect(() => {
-      const model = new Model() //eslint-disable-line
+      const model = new Model({ dataset: false }) //eslint-disable-line
     }).toThrow()
   })
 })

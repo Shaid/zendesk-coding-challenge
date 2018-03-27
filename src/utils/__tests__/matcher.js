@@ -9,7 +9,6 @@ describe('match different datatypes', () => {
   it('can find numbers', () => {
     expect(matcher(1234, 1234)).toBe(true)
     expect(matcher(12345, 1234)).not.toBe(true)
-
   })
 
   it('can find booleans using booleans', () => {
