@@ -1,4 +1,4 @@
-{ 
+{
     "extends": [
         "eslint-config-airbnb-base"
     ],
@@ -14,7 +14,8 @@
         "no-confusing-arrow": "warn",
         "no-nested-ternary": "warn",
         "no-plusplus": "off",
-        "prefer-template": "warn", 
+        "no-restricted-syntax": "off",
+        "prefer-template": "warn",
         "semi": ["error", "never"]
     }
 }
