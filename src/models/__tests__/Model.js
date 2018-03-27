@@ -87,7 +87,14 @@ describe('basic model related functionality', () => {
     expect(result.name).toBe('tim')
   })
 
-  it('can magically determine relational keys', () => {
+  it('can render a resultset', () => {
+    const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
+
+    const result = model.render(PERSON_MODEL_DATASET)
+    expect(result).toBe(PERSON_MODEL_DATASET)
+  })
+
+  it('can render a resultset that has nested relations', () => {
     expect(true).toBe(false)
   })
 })

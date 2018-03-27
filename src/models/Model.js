@@ -1,3 +1,5 @@
+const matcher = require('../utils/matcher')
+
 const ExceptionFieldNotFound = {
   name: 'FieldNotFoundException', message: 'Field not found.'
 }
@@ -8,19 +10,23 @@ const ExceptionModelDatasetNotProvided = {
 
 class Model {
   constructor(options) {
-    this.options = { ...this.defaults, ...options }
-
-    if (this.options.dataset !== undefined) {
-      this.loadDataset(this.options.dataset)
+    const { dataset, relations } = options
+    this.relations = relations
+    if (dataset !== undefined) {
+      this.processDataset(dataset)
     } else {
       throw ExceptionModelDatasetNotProvided
     }
   }
 
-  loadDataset(dataset) {
+  processDataset(dataset) {
     this.data = dataset
     this.fields = this.getFieldNames()
     return true
+  }
+
+  render(dataset) {
+    return dataset
   }
 
   // we don't have any schemas (really) so let's go work out what fields are available.
@@ -34,6 +40,22 @@ class Model {
     }
 
     return [...fields]
+  }
+
+  getRelations() {
+    const relations = []
+
+    if (this.fields === undefined) {
+      throw ExceptionModelDatasetNotProvided
+    }
+
+    for (const field of this.fields) {
+      if (field.endsWith('_id')) {
+        relations.push(field)
+      }
+    }
+
+    return relations
   }
 
   hasField(field) {
@@ -51,16 +73,11 @@ class Model {
     }
 
     const result = this.data.filter((item) => {
-      if (item[field] === value) {
-        return true
-      }
-      return false
+      return matcher(item[field], value)
     })
 
     return result
   }
 }
-
-Model.defaults = {}
 
 module.exports = Model
