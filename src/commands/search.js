@@ -10,7 +10,7 @@ const searchDatasetByField = async (args, callback, activeCommand) => {
     activeCommand.log(`searching for ${field} ${query}`)
 
     const result = await resolveRelations(dataset.find(field, query), dataset)
-    //activeCommand.log(dataset.find(field, query))
+    activeCommand.log(dataset.find(field, query))
 
     resolve(result)
   })

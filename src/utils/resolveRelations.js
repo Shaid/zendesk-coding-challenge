@@ -8,7 +8,7 @@ const resolveRelations = (dataset, model) => {
   const rendered = []
   dataset.forEach((result) => {
     const renderedElement = result
-    Object.keys(model.relations).forEach((relation, index) => {
+    Object.keys(model.relations).forEach((relation) => {
       const relationship = model.relations[relation]
       const relatedModel = datasets[relationship.model]
 
@@ -27,12 +27,3 @@ const resolveRelations = (dataset, model) => {
 }
 
 module.exports = resolveRelations
-/*
-module.exports = function (...args) {
-  console.log(args)
-  return function () {
-    const result = render(datasets, ...args)
-    return result
-  }
-}
-*/
