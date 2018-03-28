@@ -3,7 +3,7 @@ const matchers = {
     return (field === JSON.parse(value))
   },
   string: (field, value) => {
-    return (field.toLowerCase() === value.toLowerCase())
+    return (field === value)
   },
   number: (field, value) => {
     return (field === value)
@@ -17,7 +17,7 @@ const matchers = {
 const matcher = (field, value) => {
   const type = typeof field
 
-  if (type !== 'undefined') {
+  if (type !== 'undefined' && value !== 'undefined') {
     return matchers[type].call(this, field, value)
   }
 
