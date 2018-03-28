@@ -15,6 +15,7 @@ Language being used is ES2016 (Javascript), and it's all made possible using [no
 Node 8.10 or greater is required.
 
 ## Installation
+
 `npm install`
 
 ## Usage
@@ -38,3 +39,13 @@ This will bring you to a cli prompt:
 ### search
 
 ### list
+
+## Testing
+
+You can run all tests by running:
+
+`npm run test`
+
+You can additionally run eslint on the codebase using:
+
+`npm run lint`
