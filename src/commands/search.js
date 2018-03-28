@@ -1,3 +1,5 @@
+const resolveRelations = require('../utils/resolveRelations')
+
 const command = 'search <dataset> <field> <query>'
 const description = 'Search through the available datasets'
 
@@ -7,10 +9,10 @@ const searchDatasetByField = async (args, callback, activeCommand) => {
   return new Promise(async (resolve) => {
     activeCommand.log(`searching for ${field} ${query}`)
 
-    const result = await dataset.find(field, query)
+    const result = await resolveRelations(dataset.find(field, query), dataset)
+    //activeCommand.log(dataset.find(field, query))
 
-    activeCommand.log(result)
-    resolve()
+    resolve(result)
   })
 }
 

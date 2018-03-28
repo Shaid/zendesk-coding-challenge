@@ -1,7 +1,7 @@
 const PERSON_MODEL_DATASET = `
 [
   {
-    "_id": "1",
+    "_id": 1,
     "name": "bob",
     "age": "27",
     "description": "tall",
@@ -10,7 +10,7 @@ const PERSON_MODEL_DATASET = `
     ]
   },
   {
-    "_id": "2",
+    "_id": 2,
     "name": "tim",
     "age": "27",
     "description": "short",
@@ -19,13 +19,13 @@ const PERSON_MODEL_DATASET = `
     ]
   },
   {
-    "_id": "3",
+    "_id": 3,
     "name": "jane",
     "description": "",
     "disabled": true
   },
   {
-    "_id": "4",
+    "_id": 4,
     "name": "kate",
     "age": "27",
     "description": "",
@@ -34,21 +34,6 @@ const PERSON_MODEL_DATASET = `
 ]
 `
 const PERSON_MODEL_DATASET_FIELDS = ['_id', 'name', 'age', 'description', 'tags', 'disabled']
-const QUOTE_MODEL_DATASET = `
-[
-  {
-    "_id": "1",
-    "person_id": "1",
-    "title": "By the pricking of my thumbs"
-  },
-  {
-    "_id": "2",
-    "person_id": "3",
-    "title": "Something wicked this way comes"
-  }
-]
-`
-const QUOTE_MODEL_DATASET_FIELDS = ['_id', 'person_id', 'title']
 
 const Model = require('../Model')
 
@@ -72,28 +57,20 @@ describe('basic model related functionality', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
 
     expect(model.fields).toEqual(PERSON_MODEL_DATASET_FIELDS)
-
-    const quote = new Model({ dataset: JSON.parse(QUOTE_MODEL_DATASET) })
-
-    expect(quote.fields).toEqual(QUOTE_MODEL_DATASET_FIELDS)
   })
 
-  it('can pick an item by id', () => {
+  it('can pick an item by id using a number', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
-    const result = model.getById('2')
+    const result = model.getById(2)
 
     expect(result.name).toBe('tim')
   })
 
-  it('can render a resultset', () => {
+  it('cannot pick an item by id using a string', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
+    const result = model.getById('2')
 
-    const result = model.render(PERSON_MODEL_DATASET)
-    expect(result).toBe(PERSON_MODEL_DATASET)
-  })
-
-  it('can render a resultset that has nested relations', () => {
-    expect(true).toBe(false)
+    expect(result).toBe(undefined)
   })
 })
 

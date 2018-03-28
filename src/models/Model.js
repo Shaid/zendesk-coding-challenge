@@ -1,11 +1,11 @@
 const matcher = require('../utils/matcher')
 
 const ExceptionFieldNotFound = {
-  name: 'FieldNotFoundException', message: 'Field not found.'
+  name: 'FieldNotFound', message: 'Field not found.'
 }
 
 const ExceptionModelDatasetNotProvided = {
-  name: 'ExceptionModelDatasetNotProvided', message: 'No dataset has been provided for this model, and no default dataset has been defined.'
+  name: 'ModelDatasetNotProvided', message: 'No dataset has been provided for this model, and no default dataset has been defined.'
 }
 
 class Model {
@@ -22,10 +22,6 @@ class Model {
   processDataset(dataset) {
     this.data = dataset
     this.fields = this.getFieldNames()
-  }
-
-  render(dataset) {
-    return dataset
   }
 
   // we don't have any schemas (really) so let's go work out what fields are available.

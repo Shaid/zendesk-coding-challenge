@@ -2,16 +2,7 @@
 
 const chalk = require('chalk')
 const cli = require('vorpal')()
-
-const organisations = require('./src/models/organisations')
-const tickets = require('./src/models/tickets')
-const users = require('./src/models/users')
-
-const datasets = {
-  users,
-  organisations,
-  tickets
-}
+const datasets = require('./src/datasets')
 
 // we're using vorpal to provide the cli framework
 // let's set it up
