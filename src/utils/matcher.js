@@ -16,7 +16,7 @@ const matchers = {
   },
   // also triggers for arrays. thanks, loose typing.
   object: (field, value) => {
-    return (Object.values(field).findIndex((item) => { return item.toLowerCase() === value.toLowerCase()}) >= 0)
+    return (Object.values(field).findIndex((item) => { return item.toLowerCase() === value.toLowerCase() }) >= 0)
   }
 }
 
