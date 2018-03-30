@@ -1,3 +1,5 @@
+const chalk = require('chalk')
+
 const resolveRelations = require('../utils/resolveRelations')
 
 const organisations = require('../presenters/organisation')
@@ -13,10 +15,13 @@ const presenters = {
 const searchDatasetByField = async (args) => {
   const { dataset, field, query } = args
 
-  return new Promise(async (resolve) => {
-    const result = await resolveRelations(dataset.find(field, query), dataset)
-
-    resolve(result)
+  return new Promise(async (resolve, reject) => {
+    try {
+      const result = await resolveRelations(dataset.find(field, query), dataset)
+      resolve(result)
+    } catch (error) {
+      reject()
+    }
   })
 }
 
@@ -29,6 +34,22 @@ const search = async (args, datasets) => {
   })
 }
 
+async function searchAction(args, cli, datasets) {
+  if (Object.keys(datasets).includes(args.dataset)) {
+    try {
+      const results = await search(args, datasets)
+      if (results.length > 0) {
+        return results.map((result) => {
+          return presenters[args.dataset](result)
+        }).join('\n')
+      }
+      return chalk`No results found for {bold ${args.field}} matching {bold ${args.query}} on {bold ${args.dataset}}.`
+    } catch (error) {
+      return chalk`Field {bold ${args.field}} not found on {bold ${args.dataset}}`
+    }
+  }
+  return chalk`Dataset {bold ${args.dataset}} not found.`
+}
 
 module.exports = {
   register: (dependencies) => {
@@ -38,15 +59,10 @@ module.exports = {
       .command('search <dataset> <field> <query>')
       .description('Search through the available datasets')
       .autocomplete(Object.keys(datasets))
-      .action(async (args, callback) => {
-        const results = await search.call(this, args, datasets, callback, cli.activeCommand)
-        results.forEach((result) => {
-          cli.log(presenters[args.dataset](result))
-        })
-
-        callback()
+      .action(async (args) => {
+        return cli.log(await searchAction(args, cli, datasets))
       })
   },
-  search
+  search,
+  searchAction
 }
-
