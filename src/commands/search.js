@@ -1,5 +1,14 @@
 const resolveRelations = require('../utils/resolveRelations')
 
+const organisations = require('../presenters/organisation')
+const tickets = require('../presenters/ticket')
+const users = require('../presenters/user')
+
+const presenters = {
+  organisations,
+  tickets,
+  users
+}
 
 const searchDatasetByField = async (args) => {
   const { dataset, field, query } = args
@@ -30,8 +39,11 @@ module.exports = {
       .description('Search through the available datasets')
       .autocomplete(Object.keys(datasets))
       .action(async (args, callback) => {
-        const result = await search.call(this, args, datasets, callback, cli.activeCommand)
-        cli.log(result)
+        const results = await search.call(this, args, datasets, callback, cli.activeCommand)
+        results.forEach((result) => {
+          cli.log(presenters[args.dataset](result))
+        })
+
         callback()
       })
   },
