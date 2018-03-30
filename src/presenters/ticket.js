@@ -3,7 +3,7 @@ const moment = require('moment')
 
 module.exports = (ticket) => {
   return chalk`
-  {inverse [Ticket: ${ticket._id} - ${ticket.external_id}}
+  {inverse [Ticket: ${ticket._id} - ${ticket.external_id}]}
 
   {bold ${ticket.subject}}
   ${ticket.organization ? `Organisation: ${ticket.organization.name}` : ''}
