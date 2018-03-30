@@ -22,7 +22,7 @@ it('can render an organisation', () => {
   expect(result).toMatch(org.external_id)
   expect(result).toMatch(org.name)
   expect(result).toMatch(org.details)
- // expect(result).toMatch(org.users[0].name)
+  expect(result).toMatch(org.users[0].name)
 })
 
 it('can render an organisation with no relations', () => {
