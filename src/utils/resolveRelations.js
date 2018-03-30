@@ -1,7 +1,7 @@
 const datasets = require('../datasets')
 
 const resolveRelations = (dataset, model) => {
-  if (Object.values(model.relations).length === 0) {
+  if (!model.relations || Object.values(model.relations).length === 0) {
     return dataset
   }
 

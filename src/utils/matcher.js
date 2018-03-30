@@ -3,7 +3,13 @@ const matchers = {
     return (field === JSON.parse(value))
   },
   string: (field, value) => {
-    return (field === value)
+    // using String.prototype.includes() allows us to match partial strings,
+    // but we must also ensure the search isn't '' first, as all strings
+    // include ''.
+    if (value === '') {
+      return (field === value)
+    }
+    return (field.toLowerCase().includes(value.toLowerCase()))
   },
   number: (field, value) => {
     return (field === value)
