@@ -54,7 +54,6 @@ describe('cli functionality', () => {
       datasets,
       { dataset: 'persons' }
     )
-    console.log(result)
 
     expect(result).toMatch('person')
     expect(result).toMatch('description')
