@@ -54,9 +54,6 @@ it('can call the searchAction', async () => {
     query: 'Francisca'
   }, cli, datasets)
 
-  // surprisingly, we get told the dataset isn't found,
-  // even though it should be rendering it,
-  // and we get code coverage for the lines that do it.
   expect(result).toMatch(/francisca/i)
 })
 

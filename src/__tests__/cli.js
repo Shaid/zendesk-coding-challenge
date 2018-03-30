@@ -24,6 +24,9 @@ const TASK_MODEL_DATASET = `
 ]
 `
 
+// suppress the console. vorpal uses it a bit.
+global.console = { log: jest.fn() }
+
 const Model = require('../models/Model')
 
 const datasets = {
