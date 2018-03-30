@@ -15,6 +15,14 @@ function initialise(vorpalInstance, datasets) {
   search.register({ cli, datasets })
   fields.register({ cli, datasets })
 
+  cli.log(chalk`
+  {bgHex('#03363D') ZENDESK}
+
+  Welcome to the Zendesk interactive shell.
+
+  Type 'help' for a list of available commands.
+  `)
+
   return cli
 }
 
