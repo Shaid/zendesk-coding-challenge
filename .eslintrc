@@ -24,6 +24,7 @@
     "no-nested-ternary": "warn",
     "no-plusplus": "off",
     "no-restricted-syntax": "off",
+    "no-underscore-dangle": "off",
     "prefer-template": "warn",
     "semi": ["error", "never"],
     "jest/no-disabled-tests": "warn",
