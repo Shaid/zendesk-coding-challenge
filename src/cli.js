@@ -9,7 +9,7 @@ const cliConfig = require('../config/cli.json')
 function initialise(vorpalInstance, datasets) {
   const cli = vorpalInstance()
   cli.history(cliConfig.historyId)
-  cli.delimiter(chalk`{bgHex('${cliConfig.prompt.colour}') ${cliConfig.prompt.delimiter}}`)
+  cli.delimiter(chalk`{bold ${cliConfig.prompt.delimiter}}`)
 
   // add our available commands
   search.register({ cli, datasets })

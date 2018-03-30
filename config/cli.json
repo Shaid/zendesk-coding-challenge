@@ -1,7 +1,6 @@
 {
   "appId": "zendesk-coding-challenge",
   "prompt": {
-    "colour": "#03363D",
     "delimiter": "zendesk:"
   }
 }
