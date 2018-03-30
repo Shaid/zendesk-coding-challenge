@@ -18,9 +18,7 @@ module.exports = (ticket) => {
   ${ticket.due_at ? `Due: ${ticket.due_at}` : ''}
   Incidents: ${ticket.has_incidents}
 
-  Tags: ${ticket.tags.map((tag) => {
-    return tag
-  }).join(', ')}
+  Tags: ${ticket.tags.map((tag) => { return tag }).join(', ')}
 
   ${ticket.submitter ? `Submitted by: ${ticket.submitter.name} via ${ticket.via}` : ''}
   Submitted on: ${moment(ticket.created_at, 'YYYY-MM-DDThh:mm:ss Z').format('dddd, MMMM Do YYYY [at] h:mm:ss a')}

@@ -21,9 +21,7 @@ module.exports = (user) => {
   Shared: ${user.shared}
   Suspended: ${user.suspended}
 
-  Tags: ${user.tags.map((tag) => {
-    return tag
-  }).join(', ')}
+  Tags: ${user.tags.map((tag) => { return tag }).join(', ')}
 
   {bold Tickets}
   Opened:
