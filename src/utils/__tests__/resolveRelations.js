@@ -26,39 +26,9 @@ const USER = `
   "role": "admin"
 }]
 `
-const ORGANISATION = `
-[{
-  "_id": 119,
-  "url": "http://initech.zendesk.com/api/v2/organizations/119.json",
-  "external_id": "2386db7c-5056-49c9-8dc4-46775e464cb7",
-  "name": "Multron",
-  "domain_names": [
-    "bleeko.com",
-    "pulze.com",
-    "xoggle.com",
-    "sultraxin.com"
-  ],
-  "created_at": "2016-02-29T03:45:12 -11:00",
-  "details": "Non profit",
-  "shared_tickets": false,
-  "tags": [
-    "Erickson",
-    "Mccoy",
-    "Wiggins",
-    "Brooks"
-  ]
-}]
-`
 
-const { organisations, users } = require('../../datasets')
+const { users } = require('../../datasets')
 const resolveRelations = require('../resolveRelations')
-
-
-it('can provide a resultset that has no nested relations', () => {
-  const result = resolveRelations(JSON.parse(ORGANISATION), organisations)[0]
-  expect(result).toEqual(JSON.parse(ORGANISATION)[0])
-})
-
 
 it('can provide a resultset that has nested relations', () => {
   const result = resolveRelations(JSON.parse(USER), users)[0]

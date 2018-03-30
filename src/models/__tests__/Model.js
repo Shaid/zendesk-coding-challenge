@@ -59,18 +59,11 @@ describe('basic model related functionality', () => {
     expect(model.fields).toEqual(PERSON_MODEL_DATASET_FIELDS)
   })
 
-  it('can pick an item by id using a number', () => {
+  it('can pick an item by id', () => {
     const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
     const result = model.getById(2)
 
     expect(result.name).toBe('tim')
-  })
-
-  it('cannot pick an item by id using a string', () => {
-    const model = new Model({ dataset: JSON.parse(PERSON_MODEL_DATASET) })
-    const result = model.getById('2')
-
-    expect(result).toBe(undefined)
   })
 })
 
