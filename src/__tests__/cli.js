@@ -46,11 +46,11 @@ it('can create a vorpal cli instance', () => {
   ]))
 })
 
-it('has a command called list', () => {
+it('has a command called fields', () => {
   const app = cli(vorpal, datasets)
   expect(app.commands).toEqual(expect.arrayContaining([
     expect.objectContaining({
-      _name: 'list'
+      _name: 'fields'
     }),
   ]))
 })
