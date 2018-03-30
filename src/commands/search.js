@@ -22,16 +22,17 @@ const search = async (args, datasets) => {
 
 
 module.exports = {
-  register: (injectees) => {
-    const { cli, datasets } = injectees
+  register: (dependencies) => {
+    const { cli, datasets } = dependencies
 
     return cli
       .command('search <dataset> <field> <query>')
       .description('Search through the available datasets')
       .autocomplete(Object.keys(datasets))
-      .action((args, callback) => {
-        cli.activeCommand.log('searching!')
-        return search.call(this, args, datasets, callback, cli.activeCommand)
+      .action(async (args, callback) => {
+        const result = await search.call(this, args, datasets, callback, cli.activeCommand)
+        cli.log(result)
+        callback()
       })
   },
   search

@@ -49,7 +49,7 @@ describe('cli functionality', () => {
   it('can call the listAction', async () => {
     const result = await listAction(
       datasets,
-      ['persons']
+      { dataset: 'persons' }
     )
 
     expect(result).toEqual([PERSON_MODEL_DATASET_FIELDS])

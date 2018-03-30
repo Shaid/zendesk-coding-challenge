@@ -17,16 +17,16 @@ const list = (datasets, dataset) => {
 }
 
 async function listAction(datasets, args) {
-  const fields = await list(datasets, args[0])
+  const fields = await list(datasets, args.dataset)
 
   return fields
 }
 
 module.exports = {
-  register: (injectees) => {
-    const { cli, datasets } = injectees
-    const doListAction = async () => {
-      const fields = await listAction(cli, datasets, ...arguments)
+  register: (dependencies) => {
+    const { cli, datasets } = dependencies
+    const doListAction = async (args) => {
+      const fields = await listAction(datasets, args)
       cli.activeCommand.log(fields)
       return fields
     }
