@@ -8,6 +8,7 @@ const relations = {
 }
 
 module.exports = new Model({
+  name: 'users',
   dataset,
   relations
 })

@@ -7,6 +7,7 @@ const relations = {
 }
 
 module.exports = new Model({
+  name: 'organisation',
   dataset,
   relations
 })

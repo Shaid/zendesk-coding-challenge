@@ -10,7 +10,8 @@ const ExceptionModelDatasetNotProvided = {
 
 class Model {
   constructor(options) {
-    const { dataset, relations } = options
+    const { dataset, name, relations } = options
+    this.name = name
     this.relations = relations
     if (dataset) {
       this.processDataset(dataset)
