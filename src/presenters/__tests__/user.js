@@ -20,19 +20,8 @@ const FLAT_USER = {
   role: 'end-user'
 }
 
-const resolveRelations = require('../../utils/resolveRelations')
-const users = require('../../models/users')
+const { users } = require('../../datasets')
 const userPresenter = require('../user')
-
-it('can render a user with nested relationships', () => {
-  const user = resolveRelations(users.find('_id', 1), users)[0]
-  const result = userPresenter(user)
-
-  // use string matching to find the name, org name and first ticket subject
-  expect(result).toMatch(user.external_id)
-  expect(result).toMatch(user.organization.name)
-  expect(result).toMatch(user.assigned_tickets[0].subject)
-})
 
 it('can render a simple user with no relations', () => {
   const result = userPresenter(FLAT_USER)
@@ -44,3 +33,14 @@ it('can render a simple user with no relations', () => {
   expect(result).toMatch(FLAT_USER.alias)
   expect(result).toMatch(FLAT_USER.role)
 })
+
+it('can render a user with nested relationships', () => {
+  const user = users.find('_id', 1)[0]
+  const result = userPresenter(user)
+
+  // use string matching to find the name, org name and first ticket subject
+  expect(result).toMatch(user.external_id)
+  expect(result).toMatch(user.organization.name)
+  expect(result).toMatch(user.assigned_tickets[0].subject)
+})
+

@@ -10,20 +10,8 @@ const FLAT_ORGANISATION_DATA = {
   tags: ['Erickson', 'Mccoy', 'Wiggins', 'Brooks']
 }
 
-const organisations = require('../../models/organisations')
+const { organisations } = require('../../datasets')
 const organisationPresenter = require('../organisation')
-const resolveRelations = require('../../utils/resolveRelations')
-
-it('can render an organisation', () => {
-  const org = resolveRelations(organisations.find('_id', 109), organisations)[0]
-  const result = organisationPresenter(org)
-
-  // use string matching to check that it renders out a subject, description, etc
-  expect(result).toMatch(org.external_id)
-  expect(result).toMatch(org.name)
-  expect(result).toMatch(org.details)
-  expect(result).toMatch(org.users[0].name)
-})
 
 it('can render an organisation with no relations', () => {
   const result = organisationPresenter(FLAT_ORGANISATION_DATA)
@@ -31,4 +19,15 @@ it('can render an organisation with no relations', () => {
   expect(result).toMatch(FLAT_ORGANISATION_DATA.external_id)
   expect(result).toMatch(FLAT_ORGANISATION_DATA.name)
   expect(result).toMatch(FLAT_ORGANISATION_DATA.details)
+})
+
+it('can render an organisation', () => {
+  const org = organisations.find('_id', 109)[0]
+  const result = organisationPresenter(org)
+
+  // use string matching to check that it renders out a subject, description, etc
+  expect(result).toMatch(org.external_id)
+  expect(result).toMatch(org.name)
+  expect(result).toMatch(org.details)
+  expect(result).toMatch(org.users[0].name)
 })

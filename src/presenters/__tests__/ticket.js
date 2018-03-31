@@ -17,20 +17,8 @@ const FLAT_TICKET_DATA = {
   due_at: '2016-06-05T08:59:38 -10:00'
 }
 
-const resolveRelations = require('../../utils/resolveRelations')
-const tickets = require('../../models/tickets')
+const { tickets } = require('../../datasets')
 const ticketPresenter = require('../ticket')
-
-it('can render a ticket', () => {
-  const ticket = resolveRelations(tickets.find('_id', '01e60325-abe4-44d8-a821-035e15637428'), tickets)[0]
-  const result = ticketPresenter(ticket)
-
-  // use string matching to check that it renders out a subject, description, etc
-  expect(result).toMatch(ticket.external_id)
-  expect(result).toMatch(ticket.subject)
-  expect(result).toMatch(ticket.description)
-})
-
 
 it('can render a ticket with no relations', () => {
   const result = ticketPresenter(FLAT_TICKET_DATA)
@@ -39,4 +27,14 @@ it('can render a ticket with no relations', () => {
   expect(result).toMatch(FLAT_TICKET_DATA.external_id)
   expect(result).toMatch(FLAT_TICKET_DATA.subject)
   expect(result).toMatch(FLAT_TICKET_DATA.description)
+})
+
+it('can render a ticket', () => {
+  const ticket = tickets.find('_id', '01e60325-abe4-44d8-a821-035e15637428')[0]
+  const result = ticketPresenter(ticket)
+
+  // use string matching to check that it renders out a subject, description, etc
+  expect(result).toMatch(ticket.external_id)
+  expect(result).toMatch(ticket.subject)
+  expect(result).toMatch(ticket.description)
 })

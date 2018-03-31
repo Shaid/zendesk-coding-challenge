@@ -1,7 +1,5 @@
 const chalk = require('chalk')
 
-const resolveRelations = require('../utils/resolveRelations')
-
 const organisations = require('../presenters/organisation')
 const tickets = require('../presenters/ticket')
 const users = require('../presenters/user')
@@ -17,7 +15,7 @@ const searchDatasetByField = async (args) => {
 
   return new Promise(async (resolve, reject) => {
     try {
-      const result = await resolveRelations(dataset.find(field, query), dataset)
+      const result = await dataset.find(field, query)
       resolve(result)
     } catch (error) {
       reject()
@@ -45,6 +43,7 @@ async function searchAction(args, cli, datasets) {
       }
       return chalk`No results found for {bold ${args.field}} matching {bold ${args.query}} on {bold ${args.dataset}}.`
     } catch (error) {
+      console.log(error)
       return chalk`Field {bold ${args.field}} not found on {bold ${args.dataset}}`
     }
   }

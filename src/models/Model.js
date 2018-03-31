@@ -14,15 +14,15 @@ class Model {
     this.name = name
     this.relations = relations
     if (dataset) {
-      this.processDataset(dataset)
+      this.setDataset(dataset)
+      this.fields = this.getFieldNames()
     } else {
       throw ExceptionModelDatasetNotProvided
     }
   }
 
-  processDataset(dataset) {
+  setDataset(dataset) {
     this.data = dataset
-    this.fields = this.getFieldNames()
   }
 
   // we don't have any schemas (really) so let's go work out what fields are available.
