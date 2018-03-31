@@ -43,7 +43,6 @@ async function searchAction(args, cli, datasets) {
       }
       return chalk`No results found for {bold ${args.field}} matching {bold ${args.query}} on {bold ${args.dataset}}.`
     } catch (error) {
-      console.log(error)
       return chalk`Field {bold ${args.field}} not found on {bold ${args.dataset}}`
     }
   }
