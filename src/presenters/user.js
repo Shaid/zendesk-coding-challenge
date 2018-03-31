@@ -2,6 +2,15 @@ const chalk = require('chalk')
 
 const ticketList = require('./ticketList')
 
+const logSymbols = require('log-symbols')
+
+const symbol = (bool) => {
+  if (bool) {
+    return logSymbols.success
+  }
+  return logSymbols.error
+}
+
 module.exports = (user) => {
   return chalk`
   {inverse [User: ${user._id} - ${user.external_id} - Created: ${user.created_at}]}
@@ -16,10 +25,10 @@ module.exports = (user) => {
 
   ${user.organization ? chalk`Organisation: {bold ${user.organization.name}}` : ''}
   Role: ${user.role}
-  Active: ${user.active}
-  Verified: ${user.verified}
-  Shared: ${user.shared}
-  Suspended: ${user.suspended}
+  Active: ${symbol(user.active)}
+  Verified: ${symbol(user.verified)}
+  Shared: ${symbol(user.shared)}
+  Suspended: ${symbol(user.suspended)}
 
   Tags: ${user.tags.map((tag) => { return tag }).join(', ')}
 

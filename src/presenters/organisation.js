@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 
+const symbol = require('./symbol')
 const ticketList = require('./ticketList')
 const userList = require('./userList')
 
@@ -12,7 +13,7 @@ module.exports = (org) => {
 
   Tags: ${org.tags.map((tag) => { return tag }).join(', ')}
 
-  Shared tickets: ${org.shared_tickets}
+  Shared tickets: ${symbol(org.shared_tickets)}
 
   {bold Tickets}
   ${ticketList(org.tickets)}

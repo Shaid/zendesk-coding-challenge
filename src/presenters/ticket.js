@@ -1,6 +1,8 @@
 const chalk = require('chalk')
 const moment = require('moment')
 
+const symbol = require('./symbol')
+
 module.exports = (ticket) => {
   return chalk`
   {inverse [Ticket: ${ticket._id} - ${ticket.external_id}]}
@@ -16,7 +18,7 @@ module.exports = (ticket) => {
   Type: ${ticket.type}
   ${ticket.assignee ? `Assigned to: ${ticket.assignee.name}` : ''}
   ${ticket.due_at ? `Due: ${ticket.due_at}` : ''}
-  Incidents: ${ticket.has_incidents}
+  Incidents: ${symbol(ticket.has_incidents)}
 
   Tags: ${ticket.tags.map((tag) => { return tag }).join(', ')}
 
